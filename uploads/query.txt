@@ -1,0 +1,64 @@
+ create table users (
+
+cod int auto_increment primary key,
+name varchar (100) not null,
+cpf varchar (50) not null,
+address varchar (50) not null,
+phone varchar (100) not null,
+email varchar (100) not null,
+password varchar (12) not null,
+genre varchar (20) not null
+
+)
+
+ create table category(
+ 
+cod int auto_increment primary key,
+name varchar(50) not null
+
+)
+
+create table products (
+
+cod int AUTO_INCREMENT PRIMARY KEY,
+name varchar (50) not null,
+photo blob,
+quantity int,
+price decimal not null,
+genre varchar (20) not null,
+description varchar (250) not null,
+productCategory int not null
+)
+
+create table sale (
+
+cod int AUTO_INCREMENT primary key,
+value decimal not null,
+date datetime,
+saleUser int not null
+
+)
+
+
+alter table products 
+add   FOREIGN key  (productCategory )
+REFERENCES category(cod) on UPDATE CASCADE
+on DELETE CASCADE
+
+
+alter table sale
+add  FOREIGN key (saleUser)
+REFERENCES users(cod) on UPDATE CASCADE
+on DELETE CASCADE
+..
+alter table saleproducts
+add FOREIGN key (productsSale)
+REFERENCES products(cod) on UPDATE CASCADE
+on DELETE CASCADE
+
+
+
+alter table saleproducts
+add FOREIGN key (saleProducts)
+REFERENCES sale(cod) on UPDATE CASCADE
+on DELETE CASCADE

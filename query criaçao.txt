@@ -1,0 +1,63 @@
+ create table users (
+
+cod int auto_increment primary key,
+nome varchar (100) not null,
+cpf varchar (50) not null,
+address varchar (50) not null,
+phone varchar (100) not null,
+email varchar (100) not null,
+password varchar (12) not null,
+genre varchar not null
+
+)
+
+
+create table products (
+
+cod int AUTO_INCREMENT PRIMARY KEY,
+name varchar (50) not null,
+price decimal not null,
+genre varchar not null,
+description varchar (250) not null
+)
+
+create TABLE category (
+
+cod int AUTO_INCREMENT primary KEY,
+name varchar (100) not null
+
+)
+
+create table sale (
+
+cod int AUTO_INCREMENT,
+value decimal not null,
+date datetime 
+
+)
+
+alter table products 
+add productsCategory int 
+
+alter table products 
+add   FOREIGN key  (productsCategory )
+REFERENCES category(cod)
+
+
+alter table sale
+add salaUser int 
+
+alter table sale
+add  FOREIGN key (salaUser)
+REFERENCES users(codUsers)
+
+
+
+
+alter table saleproducts
+add FOREIGN key (productsSale)
+REFERENCES products(cod)
+
+alter table saleproducts
+add FOREIGN key (saleProducts)
+REFERENCES sale(cod)
